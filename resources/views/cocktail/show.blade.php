@@ -12,6 +12,10 @@
             @endforeach
         </ul>
 
+        <h2>Glassware</h2>
+
+        <p>Double Rocks</p>
+
         <h2>Method</h2>
 
         <div>
