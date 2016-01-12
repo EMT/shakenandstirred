@@ -16,4 +16,9 @@ class Glass extends Model implements SluggableInterface
         'build_from' => 'name',
         'save_to'    => 'slug',
     ];
+
+    public function cocktails()
+    {
+        return $this->belongsToMany('App\Cocktail');
+    }
 }

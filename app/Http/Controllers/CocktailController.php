@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Cocktail;
+use App\Ingredient;
 use App\Glass;
 
 use Redirect;
@@ -49,6 +50,16 @@ class CocktailController extends Controller
         $cocktail->method = $request->input('method');
         $cocktail->save();
 
+        $ingredients = [];
+
+        foreach (explode("\n", $request->input('ingredients')) as $i) {
+            $ingredient = new Ingredient();
+            $ingredient->name = $i;
+            $ingredients[] = $ingredient;
+        }
+
+        $cocktail->ingredients()->saveMany($ingredients);
+
         return Redirect::route('cocktail.index')->with('message', 'Cocktail created');
     }
 
@@ -73,7 +84,8 @@ class CocktailController extends Controller
     public function edit($slug)
     {
         $cocktail = Cocktail::findBySlugOrIdOrFail($slug);
-        return view('cocktail.edit', compact('cocktail'));
+        $glasses = Glass::all();
+        return view('cocktail.edit', compact('cocktail', 'glasses'));
     }
 
     /**
@@ -89,6 +101,16 @@ class CocktailController extends Controller
         $cocktail->name = $request->input('name');
         $cocktail->method = $request->input('method');
         $cocktail->save();
+
+        $ingredients = [];
+
+        foreach (explode("\n", $request->input('ingredients')) as $i) {
+            $ingredient = new Ingredient();
+            $ingredient->name = $i;
+            $ingredients[] = $ingredient;
+        }
+
+        $cocktail->ingredients()->saveMany($ingredients);
 
         return Redirect::route('cocktail.index')->with('message', 'Cocktail updated');
     }
