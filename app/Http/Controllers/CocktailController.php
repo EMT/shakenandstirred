@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use App\Cocktail;
 use App\Glass;
 
+use Redirect;
+
 class CocktailController extends Controller
 {
     /**
@@ -42,50 +44,62 @@ class CocktailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cocktail = new Cocktail();
+        $cocktail->name = $request->input('name');
+        $cocktail->method = $request->input('method');
+        $cocktail->save();
+
+        return Redirect::route('cocktail.index')->with('message', 'Cocktail created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $cocktail = Cocktail::findBySlugOrIdOrFail($slug);
+        return view('cocktail.show', compact('cocktail'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $cocktail = Cocktail::findBySlugOrIdOrFail($slug);
+        return view('cocktail.edit', compact('cocktail'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $cocktail = Cocktail::findBySlugOrIdOrFail($slug);
+        $cocktail->name = $request->input('name');
+        $cocktail->method = $request->input('method');
+        $cocktail->save();
+
+        return Redirect::route('cocktail.index')->with('message', 'Cocktail updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
         //
     }

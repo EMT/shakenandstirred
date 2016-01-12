@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Glass;
+
 use Redirect;
 
 class GlassController extends Controller
@@ -51,19 +52,19 @@ class GlassController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $slug
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
     {
         $glass = Glass::findBySlugOrIdOrFail($slug);
-        return view('glass.view', compact('glass'));
+        return view('glass.show', compact('glass'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $slug
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
     public function edit($slug)
@@ -76,7 +77,7 @@ class GlassController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $slug
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $slug)
@@ -91,7 +92,7 @@ class GlassController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $slug
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
     public function destroy($slug)

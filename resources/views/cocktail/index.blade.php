@@ -8,7 +8,7 @@
 
         <ul>
             @foreach ($cocktails as $cocktail)
-                <li><a href="{{ action('CocktailController@show', ['id' => $cocktail->id]) }}">{{ $cocktail->name }}</a></li>
+                <li><a href="{{ action('CocktailController@show', ['slug' => $cocktail->slug]) }}">{{ $cocktail->name }}</a></li>
             @endforeach
         </ul>
     </div>
