@@ -10,15 +10,29 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Name</label>
+                        <div class="form-group{{ $errors->has('name_first') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">First Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control" name="name_first" value="{{ old('name_first') }}">
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('name_first'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('name_first') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('name_last') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Last Name</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="name_last" value="{{ old('name_last') }}">
+
+                                @if ($errors->has('name_last'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name_last') }}</strong>
                                     </span>
                                 @endif
                             </div>
