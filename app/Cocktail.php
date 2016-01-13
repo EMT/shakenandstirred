@@ -26,4 +26,21 @@ class Cocktail extends Model implements SluggableInterface
     {
         return $this->belongsToMany('App\Glass');
     }
+
+    public function syncIngredients(array $ingredients)
+    {
+        $this->ingredients()->sync([]);
+
+        foreach ($ingredients as $i) {
+            $i = trim($i);
+            $ingredient = Ingredient::where('name', '=', $i)->first();
+            
+            if (!$ingredient) {
+                $ingredient = new Ingredient(['name' => $i]);
+                $this->ingredients()->save($ingredient);
+            }
+
+            $this->ingredients()->sync([$ingredient->id], false);
+        }
+    }
 }

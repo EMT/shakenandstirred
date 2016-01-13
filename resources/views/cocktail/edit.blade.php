@@ -43,7 +43,7 @@
                             <label class="col-md-4 control-label">Method</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" name="method"></textarea>
+                                <textarea class="form-control" name="method">{{ $cocktail->method }}</textarea>
 
                                 @if ($errors->has('method'))
                                     <span class="help-block">

@@ -50,15 +50,7 @@ class CocktailController extends Controller
         $cocktail->method = $request->input('method');
         $cocktail->save();
 
-        $ingredients = [];
-
-        foreach (explode("\n", $request->input('ingredients')) as $i) {
-            $ingredient = new Ingredient();
-            $ingredient->name = $i;
-            $ingredients[] = $ingredient;
-        }
-
-        $cocktail->ingredients()->saveMany($ingredients);
+        $cocktail->syncIngredients(explode("\n", $request->input('ingredients')));
 
         return Redirect::route('cocktail.index')->with('message', 'Cocktail created');
     }
@@ -102,15 +94,7 @@ class CocktailController extends Controller
         $cocktail->method = $request->input('method');
         $cocktail->save();
 
-        $ingredients = [];
-
-        foreach (explode("\n", $request->input('ingredients')) as $i) {
-            $ingredient = new Ingredient();
-            $ingredient->name = $i;
-            $ingredients[] = $ingredient;
-        }
-
-        $cocktail->ingredients()->saveMany($ingredients);
+        $cocktail->syncIngredients(explode("\n", $request->input('ingredients')));
 
         return Redirect::route('cocktail.index')->with('message', 'Cocktail updated');
     }
