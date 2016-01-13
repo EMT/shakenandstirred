@@ -10,6 +10,7 @@
     <!-- Fonts -->
     <script src="https://use.typekit.net/sgr5vuy.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link href='https://fonts.googleapis.com/css?family=Karla:400,700' rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
