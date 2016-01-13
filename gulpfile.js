@@ -12,5 +12,17 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
+    // Concatenate and output to public/css/app.css
     mix.sass('app.scss');
+
+    // Concatenate and output to public/js/all.js
+    mix.scripts([
+        'app.js'
+    ]);
+
+    // Rename with hash and save into dir: public/build
+    mix.version([
+        'css/app.css',
+        'js/all.js'
+    ]);
 });

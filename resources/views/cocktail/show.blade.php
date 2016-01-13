@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('content')
-    <div class="container">
-        <h1>{{ $cocktail->name }}</h1>
+    <div class="container cocktail">
+        <h1 class="main-title">{{ $cocktail->name }}</h1>
         
-        <h2>Ingredients</h2>
+        <h2 class="second-title">Ingredients</h2>
 
         <ul>
             @foreach ($cocktail->ingredients as $ingredient)
@@ -12,11 +12,11 @@
             @endforeach
         </ul>
 
-        <h2>Glassware</h2>
+        <h2 class="second-title">Glassware</h2>
 
         <p>Double Rocks</p>
 
-        <h2>Method</h2>
+        <h2 class="second-title">Method</h2>
 
         <div>
             {{ $cocktail->method }}

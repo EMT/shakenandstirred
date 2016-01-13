@@ -9,6 +9,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ action('CocktailController@store') }}">
                         {!! csrf_field() !!}
+                        <input type="hidden" name="user_id" value="{{ ($auth) ? $auth->user()->id : 0 }}">
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Name</label>

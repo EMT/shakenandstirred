@@ -48,6 +48,8 @@ class CocktailController extends Controller
         $cocktail = new Cocktail();
         $cocktail->name = $request->input('name');
         $cocktail->method = $request->input('method');
+        $cocktail->user_id = ($request->input('user_id') && $auth && $auth->user()) ? $request->input('user_id') : 0;
+        $cocktail->branched_from = ($request->input('branched_from')) ?: 0;
         $cocktail->save();
 
         $cocktail->syncIngredients(explode("\n", $request->input('ingredients')));
